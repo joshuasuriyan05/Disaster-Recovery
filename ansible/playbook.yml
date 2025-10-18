@@ -1,19 +1,11 @@
-- name: Deploy DR demo web app
-  hosts: all
-  become: yes
+---
+- name: Configure local Docker container
+  hosts: local
   tasks:
-    - name: Install Docker
-      apt:
-        name: docker.io
-        state: present
-        update_cache: yes
-
-    - name: Run Docker container for web app
-      docker_container:
-        name: dr-demo
-        image: nginx:alpine
+    - name: Ensure web container is running
+      community.docker.docker_container:
+        name: web-container
+        image: nginx:latest
         state: started
-        ports:
+        published_ports:
           - "8080:80"
-        volumes:
-          - "{{ playbook_dir }}/../app/index.html:/usr/share/nginx/html/index.html"

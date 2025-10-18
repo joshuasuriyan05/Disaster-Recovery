@@ -1,0 +1,11 @@
+mysql_root_password = "supersecure123"
+mysql_user          = "dra_user"
+mysql_password      = "dra_pass"
+mysql_database      = "dra_db"
+web_image           = "nginx:latest"
+app_image           = "python:3.9-slim"
+db_image            = "mysql:8.0"
+backup_image        = "alpine:latest"
+web_port            = 8080
+app_port            = 5000
+db_port             = 3306  
