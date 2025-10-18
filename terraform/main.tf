@@ -1,13 +1,3 @@
-terraform {
-  required_providers {
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "~> 3.0"
-    }
-  }
-}
-
-provider "docker" {}
 
 # Pull Nginx image
 resource "docker_image" "web" {
