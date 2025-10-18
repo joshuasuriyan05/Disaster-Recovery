@@ -1,0 +1,23 @@
+name: Infra Automation CI/CD
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  infra:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.5.7
+      - name: Terraform Init & Validate
+        run: |
+          cd terraform
+          terraform init
+          terraform validate
+      - name: Ansible Lint
+        run: |
+          sudo apt install ansible -y
+          ansible-lint ansible/playbook.yml
